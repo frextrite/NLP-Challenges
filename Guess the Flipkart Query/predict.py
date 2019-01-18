@@ -64,14 +64,12 @@ def preprocess_line(line):
 	# split line into tokens
 	tokens = line.split('\t')
 	# get data tokens
-	_result = tokens[0]
-	query = tokens[1]
+	_sentence = tokens[0]
 
 	# process result
-	result = process_sentence(_result)
-	query = query.strip()
+	sentence = process_sentence(_sentence)
 
-	return result, query
+	return sentence
 
 # find longest common sub-sequence of 2 strings
 def lcs(dp, result, query, m, n):

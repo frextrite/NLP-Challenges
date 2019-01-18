@@ -1,5 +1,26 @@
 import re
 
+classes = [ 'axe deo',
+            'best-seller books',
+            'calvin klein',
+            'camcorder',
+            'camera',
+            'chemistry',
+            'chromebook',
+            'c programming',
+            'data structures algorithms',
+            'dell laptops',
+            'dslr canon',
+            'mathematics',
+            'nike-deodrant',
+            'physics',
+            'sony cybershot',
+            'spoken english',
+            'timex watch',
+            'titan watch',
+            'tommy watch',
+            'written english']
+
 def process_sentence(sentence):
 	# convert to lower
 	line = sentence.lower()

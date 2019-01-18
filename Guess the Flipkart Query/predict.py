@@ -1,25 +1,46 @@
 import re
 
+original_classes = [ 'axe deo',
+			'calvin klein',
+			'mathematics',
+			'physics',
+			'chemistry',
+			'nike-deodrant',
+			'camcorder',
+			'camera',
+			'chromebook',
+			'data structures algorithms',
+			'dell laptops',
+			'dslr canon',
+			'sony cybershot',
+			'timex watch',
+			'titan watch',
+			'tommy watch',
+			'written english',
+			'spoken english',
+			'best-seller books',
+			'c programming']
+
 classes = [ 'axe deo',
-            'best-seller books',
-            'calvin klein',
-            'camcorder',
-            'camera',
-            'chemistry',
-            'chromebook',
-            'c programming',
-            'data structures algorithms',
-            'dell laptops',
-            'dslr canon',
-            'mathematics',
-            'nike-deodrant',
-            'physics',
-            'sony cybershot',
-            'spoken english',
-            'timex watch',
-            'titan watch',
-            'tommy watch',
-            'written english']
+			'calvin klein',
+			'mathematics',
+			'physics',
+			'chemistry chem chemical',
+			'nike deodrant',
+			'cam corder',
+			'camera',
+			'chromebook',
+			'data structures algorithms',
+			'dell laptops',
+			'dslr canon',
+			'sony cybershot',
+			'timex watch',
+			'titan watch',
+			'tommy watch',
+			'written english',
+			'spoken english',
+			'best seller books',
+			'c programming']
 
 def process_sentence(sentence):
 	# convert to lower
@@ -48,15 +69,23 @@ def preprocess_line(line):
 
 	# process result
 	result = process_sentence(_result)
+	query = query.strip()
 
 	return result, query
 
 # find longest common sub-sequence of 2 strings
-def lcs(result, query, m, n):
-    if m < 0 or n < 0:
-        return 0
+def lcs(dp, result, query, m, n):
+	if m < 0 or n < 0:
+		return 0
 
-    if result[m] == query[n]:
-        return 1 + lcs(result, query, m-1, n-1)
+	if dp[m][n] != -1:
+		return dp[m][n]
 
-    return max(lcs(result, query, m-1, n), lcs(result, query, m, n-1))
+	if result[m] == query[n]:
+		dp[m-1][n-1] = 1 + lcs(dp, result, query, m-1, n-1)
+		return dp[m-1][n-1]
+
+	dp[m-1][n] = lcs(dp, result, query, m-1, n)
+	dp[m][n-1] = lcs(dp, result, query, m, n-1)
+
+	return max(dp[m-1][n], dp[m][n-1])

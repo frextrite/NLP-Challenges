@@ -17,3 +17,15 @@ def process_sentence(sentence):
 
 	# return the line
 	return line
+
+def preprocess_line(line):
+	# split line into tokens
+	tokens = line.split('\t')
+	# get data tokens
+	_result = tokens[0]
+	query = tokens[1]
+
+	# process result
+	result = process_sentence(_result)
+
+	print(result, '\t', query)

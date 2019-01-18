@@ -120,3 +120,15 @@ def get_query(result):
 		return original_classes[18]
 	
 	return original_classes[lcs_classes.index(max(lcs_classes))]
+
+
+if __name__ == "__main__":
+	t = int(input())
+	while t != 0:
+		t -= 1
+
+		line = input()
+
+		output = get_query(preprocess_line(line))
+
+		print(output)

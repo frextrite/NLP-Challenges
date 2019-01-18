@@ -49,4 +49,14 @@ def preprocess_line(line):
 	# process result
 	result = process_sentence(_result)
 
-	print(result, '\t', query)
+	return result, query
+
+# find longest common sub-sequence of 2 strings
+def lcs(result, query, m, n):
+    if m < 0 or n < 0:
+        return 0
+
+    if result[m] == query[n]:
+        return 1 + lcs(result, query, m-1, n-1)
+
+    return max(lcs(result, query, m-1, n), lcs(result, query, m, n-1))
